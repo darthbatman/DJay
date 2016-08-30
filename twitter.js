@@ -2,20 +2,13 @@ var app = require('express')();
 var http = require('http').Server(app);
 var Twit= require('twit');
 var request = require('request');
+var config = require('./config.js');
 
 var SpotifyWebApi = require('spotify-web-api-node');   // Requiring the Twit package
-var T = new Twit({
-    consumer_key:         'YVbShMypT2aVhTXCZOUKCQk0K'
-  , consumer_secret:      '3vNUJzIeST9sk9cGYT2T0eEIAZvW4w2V4YNaedSHlMW9wz8Zic'
-  , access_token:         '3182431677-3PZVlutyuex9RTGbBG9T5cvufXEgDr9jXhmNVWc'
-  , access_token_secret:  'Y4bpT7W03EGFkRBlPoWuVVFdVxd4byTgFDEpAkgermuNQ'
-})    // Creating an instance of the Twit package
+var T = new Twit(config.twitter);    // Creating an instance of the Twit package
 
 // credentials are optional
-var spotifyApi = new SpotifyWebApi({
-  clientId : 'c5339edbd19441f69820b06cd5dcb3e6',
-  clientSecret : '673a3ddd66fe44d390e9fbecdc3a70b7'
-});
+var spotifyApi = new SpotifyWebApi(config.spotify);
 
 var masterVolume = 50;
 
